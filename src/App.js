@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './Header/Header'
 import './App.css';
+import Footer from './Footer/Footer';
+import MyRouting from './Routing/MyRouting';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="MyRouting">
+      <Header className="Header" title="Web 4 Enterprise"></Header>
+      <MyRouting 
+        loginRoute='/login'
+        homeRoute='/'
+        registerRoute='/register'
+        />
+      <Footer></Footer>
     </div>
   );
 }
