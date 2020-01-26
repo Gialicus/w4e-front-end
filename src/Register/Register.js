@@ -1,8 +1,10 @@
 import React from 'react'
+
 import { Form, Container, Row, Col } from 'react-bootstrap'
 import { FormControl } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 class Register extends React.Component {
     constructor() {
@@ -34,7 +36,8 @@ class Register extends React.Component {
                     ...this.state.formControl[name],
                     value
                 }
-            }
+            },
+            submitted: false
         })
     }
     handleSubmit = () => {
@@ -52,11 +55,25 @@ class Register extends React.Component {
             data,
             url,
         };
-        axios(options).then(res => console.log(res)).catch(err => console.log(err));
+        axios(options).then(res => {
+            console.log(res);
+            this.setState({submitted: true})
+        }).catch(err => {
+            console.log(err);
+        });
+
+    }
+    backToMain = () => {
+        this.setState({submitted: true})
     }
     render() {
+        let redirect = null;
+        if (this.state.submitted) {
+            redirect = <Redirect to="/" />
+        }
         return (
             <div className="Login">
+                {redirect}
                 <Container>
                     <Row>
                         <Col>
@@ -66,6 +83,7 @@ class Register extends React.Component {
                                 <FormControl type="text" placeholder="Email" name="email" className="mr-sm-2" onChange={this.handleChange} />
                                 <FormControl type="text" placeholder="Password" name="password" className="mr-sm-2" onChange={this.handleChange} />
                                 <Button variant="outline-primary" className="Button" onClick={this.handleSubmit}>Sign Up</Button>
+                                <Button variant="outline-primary" className="Button" onClick={this.backToMain}>Back</Button>
                             </Form>
                         </Col>
                     </Row>

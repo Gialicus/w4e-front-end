@@ -3,18 +3,22 @@ import Header from './Header/Header'
 import './App.css';
 import Footer from './Footer/Footer';
 import MyRouting from './Routing/MyRouting';
+import { BrowserRouter } from 'react-router-dom'
 
 
 function App() {
   return (
     <div className="MyRouting">
-      <Header className="Header" title="Web 4 Enterprise"></Header>
-      <MyRouting 
-        loginRoute='/login'
-        homeRoute='/'
-        registerRoute='/register'
+      <BrowserRouter>
+        <Header className="Header" title="Web 4 Enterprise"></Header>
+        <MyRouting
+          loginRoute='/login'
+          homeRoute='/'
+          registerRoute='/register'
+          timesheetRoute='/timesheet'
         />
-      <Footer></Footer>
+        <Footer></Footer>
+      </BrowserRouter>
     </div>
   );
 }

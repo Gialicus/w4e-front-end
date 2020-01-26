@@ -4,6 +4,7 @@ import { Form, Container, Row, Col } from 'react-bootstrap'
 import { FormControl } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom';
 
 
 class Login extends React.Component {
@@ -17,7 +18,8 @@ class Login extends React.Component {
                 password: {
                     value: ''
                 }
-            }
+            },
+            submitted: false
         }
     }
     handleChange = e => {
@@ -35,11 +37,19 @@ class Login extends React.Component {
     }
     handleSubmit = () => {
         axios.get('http://localhost:3010/api/users/login/' + this.state.formControl.email.value + '&' + this.state.formControl.password.value)
-            .then( resp => localStorage.setItem('token',resp.data.token));
+            .then( resp => {
+                localStorage.setItem('token',resp.data.token)
+                this.setState({submitted: true})
+            });
     }
     render() {
+        let redirect = null
+        if (this.state.submitted) {
+            redirect = <Redirect to="/timesheet" />
+        }
         return (
             <div className="Login">
+                {redirect}
                 <Container>
                     <Row>
                         <Col>
