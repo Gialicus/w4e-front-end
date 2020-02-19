@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import moment from 'moment'
 import Timerow from '../Timerow/Timerow';
+import axios from 'axios'
 
 class Timesheet extends Component {
     state = {
@@ -9,9 +10,9 @@ class Timesheet extends Component {
     }
     componentDidMount() {
         console.log('Initializing Component ' + this.constructor.name)
-        this.getDays()
+        this.populateDays()
     }
-    getDays() {
+    populateDays() {
         let startdate = moment().format('YYYY-MM-01');
         const numberOfDays = moment().daysInMonth();
         let joined = [...this.state.days]
@@ -23,7 +24,7 @@ class Timesheet extends Component {
                 dayFlag = true
             }
             joined.push({
-                    index: i,
+                    id: i,
                     dayName: dayOfWeek,
                     date: new_date.format('YYYY-MM-DD'),
                     isHolyDay: dayFlag,
@@ -36,7 +37,25 @@ class Timesheet extends Component {
         this.setState({days: joined})
     }
     callbackFromParent = (childData) => {
-        
+        let joined = [...this.state.days]
+        joined.splice(childData.id, 1 , childData)
+        this.setState( {days: joined} )    
+    }
+    handleSubmit = () => {
+        const list = [...this.state.days]
+        const data = JSON.stringify(list)
+        const url = 'http://localhost:3010/api/timesheet'
+        const options = {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data,
+            url,
+        };
+        axios(options).then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        });
     }
     render() {
         return (
@@ -64,8 +83,8 @@ class Timesheet extends Component {
                 {this.state.days.map( day => {
                         return (
                             <Timerow
-                                key={day.index}
-                                id={day.index}
+                                key={day.id}
+                                id={day.id}
                                 dayName={day.dayName}
                                 date={day.date}
                                 isHolyDay={day.isHolyDay}
@@ -73,11 +92,11 @@ class Timesheet extends Component {
                                 amEnd={day.amEnd}
                                 pmStart={day.pmStart}
                                 pmEnd={day.pmEnd}
-                                value={day}
                                 callbackFromParent={this.callbackFromParent}
                             />
                         )
                     })}
+                    <Button variant="outline-primary" className="Button" onClick={this.handleSubmit}>Submit</Button>
             </Container>
         );
     }

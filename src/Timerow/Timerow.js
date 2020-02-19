@@ -47,7 +47,6 @@ class Timerow extends Component {
         newOne[e.target.name] = e.target.value
         this.setState(newOne)
         this.props.callbackFromParent(newOne)
-        console.log(newOne)
     }
 
     render() {
