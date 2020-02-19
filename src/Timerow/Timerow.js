@@ -4,6 +4,7 @@ import { Row, Col, FormControl, Form } from 'react-bootstrap';
 
 class Timerow extends Component {
     state = {
+        id: this.props.id,
         dayName: this.props.dayName,
         date: this.props.date,
         isHolyDay: this.props.isHolyDay,
@@ -45,6 +46,8 @@ class Timerow extends Component {
         let newOne = { ...this.state }
         newOne[e.target.name] = e.target.value
         this.setState(newOne)
+        this.props.callbackFromParent(newOne)
+        console.log(newOne)
     }
 
     render() {
@@ -59,7 +62,7 @@ class Timerow extends Component {
                     <Form>
                         <FormControl
                             type="date"
-                            defaultValue={this.state.date}
+                            value={this.state.date}
                             name="date" 
                             className="mr-sm-2"
                             readOnly
@@ -70,7 +73,7 @@ class Timerow extends Component {
                     <Form>
                         <FormControl 
                             type="time" 
-                            defaultValue={this.props.dayName === 0 || this.props.dayName === 6 ? null : this.state.amStart} 
+                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.amStart} 
                             name="amStart" 
                             className="mr-sm-2" 
                             onChange={this.handleChange} />
@@ -80,7 +83,7 @@ class Timerow extends Component {
                     <Form>
                         <FormControl 
                             type="time" 
-                            defaultValue={this.props.dayName === 0 || this.props.dayName === 6 ? null : this.state.amEnd} 
+                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.amEnd} 
                             name="amEnd" 
                             className="mr-sm-2" 
                             onChange={this.handleChange} />
@@ -90,7 +93,7 @@ class Timerow extends Component {
                     <Form>
                         <FormControl 
                             type="time" 
-                            defaultValue={this.props.dayName === 0 || this.props.dayName === 6 ? null : this.state.pmStart} 
+                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.pmStart} 
                             name="pmStart" 
                             className="mr-sm-2" 
                             onChange={this.handleChange} />
@@ -100,7 +103,7 @@ class Timerow extends Component {
                     <Form>
                         <FormControl 
                             type="time" 
-                            defaultValue={this.props.dayName === 0 || this.props.dayName === 6 ? null : this.state.pmEnd} 
+                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.pmEnd} 
                             name="pmEnd" 
                             className="mr-sm-2" 
                             onChange={this.handleChange} />

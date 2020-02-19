@@ -35,6 +35,9 @@ class Timesheet extends Component {
         }
         this.setState({days: joined})
     }
+    callbackFromParent = (childData) => {
+        
+    }
     render() {
         return (
             <Container>
@@ -62,6 +65,7 @@ class Timesheet extends Component {
                         return (
                             <Timerow
                                 key={day.index}
+                                id={day.index}
                                 dayName={day.dayName}
                                 date={day.date}
                                 isHolyDay={day.isHolyDay}
@@ -70,6 +74,7 @@ class Timesheet extends Component {
                                 pmStart={day.pmStart}
                                 pmEnd={day.pmEnd}
                                 value={day}
+                                callbackFromParent={this.callbackFromParent}
                             />
                         )
                     })}
