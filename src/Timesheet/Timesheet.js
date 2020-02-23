@@ -44,7 +44,7 @@ class Timesheet extends Component {
     handleSubmit = () => {
         const list = [...this.state.days]
         const data = JSON.stringify(list)
-        const url = 'http://localhost:3010/api/timesheet'
+        const url = 'http://localhost:3020/api/timesheet'
         const options = {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -58,6 +58,8 @@ class Timesheet extends Component {
         });
     }
     render() {
+        const user = localStorage.getItem('token')
+        console.log(user)
         return (
             <Container>
                 <Row>
