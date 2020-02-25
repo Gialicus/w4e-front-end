@@ -16,6 +16,8 @@ function App() {
           homeRoute='/'
           registerRoute='/register'
           timesheetRoute='/timesheet'
+          deskRoute='/desk'
+          timegroupROute="/timegroup"
         />
         <Footer></Footer>
       </BrowserRouter>

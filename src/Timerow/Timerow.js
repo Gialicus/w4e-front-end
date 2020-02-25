@@ -72,40 +72,44 @@ class Timerow extends Component {
                     <Form>
                         <FormControl 
                             type="time" 
-                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.amStart} 
+                            value={this.state.amStart} 
                             name="amStart" 
                             className="mr-sm-2" 
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange}
+                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
                 <Col>
                     <Form>
                         <FormControl 
                             type="time" 
-                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.amEnd} 
+                            value={this.state.amEnd} 
                             name="amEnd" 
                             className="mr-sm-2" 
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange}
+                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
                 <Col>
                     <Form>
                         <FormControl 
                             type="time" 
-                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.pmStart} 
+                            value={this.state.pmStart} 
                             name="pmStart" 
                             className="mr-sm-2" 
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange}
+                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
                 <Col>
                     <Form>
                         <FormControl 
                             type="time" 
-                            value={this.props.dayName === 0 || this.props.dayName === 6 ? '' : this.state.pmEnd} 
+                            value={this.state.pmEnd} 
                             name="pmEnd" 
                             className="mr-sm-2" 
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange}
+                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
             </Row>
