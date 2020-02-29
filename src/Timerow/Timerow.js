@@ -76,7 +76,7 @@ class Timerow extends Component {
                             name="amStart" 
                             className="mr-sm-2" 
                             onChange={this.handleChange}
-                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
+                            style={this.props.dayName === 0 || this.props.dayName === 6 || this.state.amStart === '00:00' ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
                 <Col>
@@ -87,7 +87,7 @@ class Timerow extends Component {
                             name="amEnd" 
                             className="mr-sm-2" 
                             onChange={this.handleChange}
-                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
+                            style={this.props.dayName === 0 || this.props.dayName === 6 || this.state.amEnd === '00:00' ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
                 <Col>
@@ -98,7 +98,7 @@ class Timerow extends Component {
                             name="pmStart" 
                             className="mr-sm-2" 
                             onChange={this.handleChange}
-                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
+                            style={this.props.dayName === 0 || this.props.dayName === 6 || this.state.pmStart === '00:00' ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
                 <Col>
@@ -109,7 +109,7 @@ class Timerow extends Component {
                             name="pmEnd" 
                             className="mr-sm-2" 
                             onChange={this.handleChange}
-                            style={this.props.dayName === 0 || this.props.dayName === 6 ? { color: 'red' } : { color: 'black' }} />
+                            style={this.props.dayName === 0 || this.props.dayName === 6 || this.state.pmEnd === '00:00' ? { color: 'red' } : { color: 'black' }} />
                     </Form>
                 </Col>
             </Row>
